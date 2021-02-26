@@ -82,15 +82,14 @@
             </div>
 
         </div>
-    </body>
-    <script type="text/javascript">
+        <script type="text/javascript">
         $("#submit-button").on("click", function(event) {
           event.preventDefault();
           var newRes = {
             name: $("#name").val().trim(),
             phone: $("#phone").val().trim(),
             email: $("#email").val().trim(),
-            id: $("#id").val().trim()
+            id: $("#theId").val().trim()
           };    
           $.post("/make", newRes)
             .then(function(data) {
@@ -104,8 +103,9 @@
                 $("#name").val("");
                 $("#phone").val("");
                 $("#email").val("");
-                $("#id").val("");
+                $("#theId").val("");
             });
         });
     </script>
+    </body>
 </html>

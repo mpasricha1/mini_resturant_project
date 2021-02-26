@@ -2,14 +2,16 @@ const fs = require("fs");
 const path = require("path");
 
 const getData = (listType) => {
-	const type = determineType();
+	const type = determineType(listType);
 	return JSON.parse(fs.readFileSync(path.join(__dirname, type)));
 }
 
-const saveData = (savedNotesList) => {
-	const type = determineType();
-	fs.writeFile(path.join(__dirname, type), JSON.stringify(savedNotesList), "utf8", (err) =>{
-			err ? console.log(err) : console.log("Note Successfuly Saved"); 
+const saveData = (reservation, listType) => {
+	console.log(listType)
+	const type = determineType(listType);
+	console.log(type)
+	fs.writeFile(path.join(__dirname, type), JSON.stringify(reservation), "utf8", (err) =>{
+			err ? console.log(err) : console.log("Reservations Successfuly Saved"); 
 		});
 }; 
 
