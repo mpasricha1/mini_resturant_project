@@ -12,11 +12,11 @@ module.exports = app =>{
 	});
 
 	app.get('/tables', (req, res) =>{
-		res.sendFile(path.join(__dirname, "../public/tables.html"))
+		return res.sendFile(path.join(__dirname, "../public/tables.html"))
 	});
 
 	app.get('/make', (req, res) =>{
-		res.sendFile(path.join(__dirname, "../public/make.html"))
+		return res.sendFile(path.join(__dirname, "../public/make.html"))
 	});
 
 	app.post('/make', (req, res) =>{
