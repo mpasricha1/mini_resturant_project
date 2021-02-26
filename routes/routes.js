@@ -1,4 +1,5 @@
 const path = require("path")
+const fileUtil = require("../utils/fileUtils")
 
 module.exports = app =>{
 	app.get('/', (req, res) =>{
