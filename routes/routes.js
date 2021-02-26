@@ -32,8 +32,6 @@ module.exports = app =>{
 	 		tableChart.push(req.body); 
 			fileUtils.saveData(tableChart, "tables")
 	 	}
-
-	 	return;
 	});
 
 	app.get("/api/tables", function(req, res) {
