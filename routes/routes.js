@@ -22,7 +22,6 @@ module.exports = app =>{
 	app.post('/make', (req, res) =>{
 		let tableChart = fileUtils.getData("tables"); 
 
-		console.log(tableChart.length)
 	 	if(tableChart.length > 3){
 	 		let waitList = fileUtils.getData("waitlist");
 	 		waitList.push(req.body); 

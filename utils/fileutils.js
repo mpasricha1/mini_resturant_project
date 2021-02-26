@@ -7,9 +7,7 @@ const getData = (listType) => {
 }
 
 const saveData = (reservation, listType) => {
-	console.log(listType)
 	const type = determineType(listType);
-	console.log(type)
 	fs.writeFile(path.join(__dirname, type), JSON.stringify(reservation), "utf8", (err) =>{
 			err ? console.log(err) : console.log("Reservations Successfuly Saved"); 
 		});
