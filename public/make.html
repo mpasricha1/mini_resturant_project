@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="row justify-content-center pb-3" >
                                         <div class="col-6 align-self-center" >
-                                            <button type="button" class="btn btn-primary">Submit</button>
+                                            <button type="button" class="btn btn-primary" id="submit-button">Submit</button>
                                         </div>
                                     </div>
 
@@ -83,4 +83,29 @@
 
         </div>
     </body>
+    <script type="text/javascript">
+        $("#submit-button").on("click", function(event) {
+          event.preventDefault();
+          var newRes = {
+            name: $("#name").val().trim(),
+            phone: $("#phone").val().trim(),
+            email: $("#email").val().trim(),
+            id: $("#id").val().trim()
+          };    
+          $.post("/make", newRes)
+            .then(function(data) {
+                if (data) {
+                    alert("Yay! You are officially booked!");
+                    }
+                else {
+                     alert("Sorry you are on the wait list");
+                }
+
+                $("#name").val("");
+                $("#phone").val("");
+                $("#email").val("");
+                $("#id").val("");
+            });
+        });
+    </script>
 </html>
