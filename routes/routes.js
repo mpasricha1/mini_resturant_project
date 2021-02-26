@@ -1,36 +1,43 @@
 const path = require("path")
-const fileUtil = require("../utils/fileUtils")
+const fileUtils = require("../utils/fileutils")
 
 module.exports = app =>{
 	app.get('/', (req, res) =>{
-		res.sendFile(path.join(__dirname, "../public/"))
+		res.sendFile(path.join(__dirname, "../public/home.html"))
 	});
 	
-	app.get('/', (req, res) =>{
+	app.get('/home', (req, res) =>{
 		res.sendFile(path.join(__dirname, "../public/home.html"))
 	});
 
-	app.get('/', (req, res) =>{
+	app.get('/tables', (req, res) =>{
 		res.sendFile(path.join(__dirname, "../public/tables.html"))
 	});
 
-	app.get('/', (req, res) =>{
+	app.get('/make', (req, res) =>{
 		res.sendFile(path.join(__dirname, "../public/make.html"))
 	});
 
-	app.get('/', (req, res) =>{
-		res.sendFile(path.join(__dirname, "../api/tables.json"))
-	});
+	app.post('/make', (req, res) =>{
+		let tableChart = fileUtils.getData("tables"); 
 
-	app.get('/', (req, res) =>{
-		res.sendFile(path.join(__dirname, "../api/waitlist.json"))
-	});
+	 	if(tableChart.length > 2){
+	 		let waitList = fileUtils.getData("waitlist");
+	 		waitList.push(req.body); 
+
+	 		fileUtils.saveData(waitList, "waitlist"); 
+	 	}else{
+	 		tableChart.push(req.body); 
+
+	 		fileUtils.saveData(tableChart, "table")
+	 	}
+	})
 
 	app.get("/api/tables", function(req, res) {
 		return res.json(fileUtils.getData("tables"))
 	});
 	
-	app.get("/api/tables", function(req, res) {
+	app.get("/api/waitlist", function(req, res) {
 		return res.json(fileUtils.getData("waitlist"))
 	});
 
